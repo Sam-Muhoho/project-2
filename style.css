@@ -13,17 +13,20 @@ body{
 }
 .container .heading{
     text-align: center;
+
+}
+h1{
+    border: 2px solid black;
 }
 p{
     font-family:sans-serif;
     font-size: 20px;
 }
-.form-container{
+.akanForm{
     height: 30vh;
     align-items: center;
     justify-content: center;
-    margin-left: 300px;
-
+    margin-left: 200px;
 }
 
 
@@ -31,4 +34,5 @@ label{
     color: crimson;
     margin: 20px;
     font-size: 20px;
+    border: solid 2px black;
 }
