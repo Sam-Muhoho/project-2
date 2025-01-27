@@ -1,42 +1,42 @@
-// Akan names array
-const maleNames = ["Kwasi","Kwadwo","Kwabena","Kwaku","Yaw","Kofi","Kwame"]
-
-const femaleNames = ["Akosua","Adwoa","Abenaa","Akua","Yaa","Afua","Ama"]
-
-document.getElementById('form-container').addEventListener
-//Calculate akan names function
-function calculateAkanName (event) {
-    document.addEventListener
-    event.preventdefault();
-    const DD =parseInt(document.getElementById('day').value);
-    const MM =parseInt(document.getElementById('month').value);
-    const fullyear =parseInt(document.getElementById('year').value);
-    const gender =document.querySelector('input'(gender).checked.value)
-}
-
-if (day<=0 && day>31) {
-    showResult('Day should be between 1 and 31');
-    return;
-}
-
-if (month<=0 && month>12) {
-    showResult('Month should be between 1 and 12');
-    return;
-}
-
-if (!year<=1900 && year>2025) {
-    showResult('Day should be between 1 and 31');
-    return;
-}
-
-
-const dayoftheweek = Math.floor ( ( (CC/4) -2*CC-1) + ((5*YY/4) ) + ((26*(MM+1)/10)) + DD )% 7
-
-let akanName;
-if (gender===male){
-    akanName==maleNames[dayoftheweek]
-}
-    else(gender===female){
-        akanName==femaleNames[dayoftheweek]   
-}
-document.getElementById('results').innerText = "Your Akan name is ${akanName}"
+document.getElementById("akanForm").addEventListener("submit", function (event) {
+    event.preventDefault();
+  
+    // Get user input
+    const birthdate = document.getElementById("birthdate").value;
+    const gender = document.getElementById("gender").value;
+  
+    if (!birthdate || !gender) {
+      alert("Please fill out all fields.");
+      return;
+    }
+  
+    // Parse date
+    const [year, month, day] = birthdate.split("-").map(Number);
+    const century = Math.floor(year / 100);
+    const yearDigits = year % 100;
+  
+    // Calculate day of the week
+    const dayOfWeek = Math.round(
+      ((century / 4) - 2 * century - 1 + (5 * yearDigits / 4) + (26 * (month + 1) / 10) + day) % 7
+    );
+  
+    // Map day of the week to Akan names
+    const akanNames = {
+      0: { male: "Kwasi", female: "Akosua" }, // Sunday
+      1: { male: "Kwadwo", female: "Adwoa" }, // Monday
+      2: { male: "Kwabena", female: "Abenaa" }, // Tuesday
+      3: { male: "Kwaku", female: "Akua" }, // Wednesday
+      4: { male: "Yaw", female: "Yaa" },     // Thursday
+      5: { male: "Kofi", female: "Afua" },   // Friday
+      6: { male: "Kwame", female: "Ama" },   // Saturday
+    };
+  
+    const dayName = akanNames[dayOfWeek < 0 ? (dayOfWeek + 7) % 7 : dayOfWeek][gender];
+  
+    // Display result
+    const resultDiv = document.getElementById("result");
+    resultDiv.textContent = `You were born on a ${
+      ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"][dayOfWeek]
+    }, and your Akan name is ${dayName}.`;
+  });
+  
